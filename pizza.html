@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!-- Participação do Brasil nos investimentos da América Latina (%) comparado ao restante da América Latina por ano. -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brasil x América Latina</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="table.html">Dados Abes</a></li>
+            <li><a href="bars.html">Investimentos</a></li>
+            <li><a href="line.html">Ranking do Brasil</a></li>
+            <li><a href="pizza.html">Contexto Brasileiro na AL</a></li> 
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Tabela de Dados</h1>
+        <div>
+            <canvas id="myChart" width="500" height="500"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        const Utils = {
+            numbers: (cfg) => Array.from({ length: cfg.count }, () => Math.floor(Math.random() * (cfg.max - cfg.min + 1)) + cfg.min),
+            CHART_COLORS: {
+                red: 'rgba(255, 99, 132, 0.5)',
+                orange: 'rgba(255, 159, 64, 0.5)',
+                yellow: 'rgba(255, 205, 86, 0.5)',
+                green: 'rgba(75, 192, 192, 0.5)',
+                blue: 'rgba(54, 162, 235, 0.5)',
+            }
+        };
+
+
+        const DATA_COUNT = 5;
+        const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
+
+        const data = {
+            labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+            datasets: [
+                {
+                    label: 'Dataset 1',
+                    data: Utils.numbers(NUMBER_CFG),
+                    backgroundColor: Object.values(Utils.CHART_COLORS),
+                }
+            ]
+        };
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Participação do Brasil nos investimentos da América Latina'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

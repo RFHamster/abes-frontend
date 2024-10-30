@@ -41,13 +41,25 @@ nav ul li a:hover {
     background-color: white;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Bordas arredondadas */
 }
 
 h1 {
     text-align: center;
     color: #333;
+    font-size: 2.5rem; /* Tamanho da fonte maior */
+    margin-bottom: 20px; /* Espaçamento inferior */
 }
 
+/* Estilo dos Parágrafos */
+p {
+    line-height: 1.6; /* Aumenta a altura da linha para melhor legibilidade */
+    margin-bottom: 15px; /* Espaçamento entre os parágrafos */
+    color: #555; /* Cor do texto mais suave */
+    font-size: 1.1rem; /* Tamanho da fonte do parágrafo */
+}
+
+/* Estilo da Tabela */
 .table-responsive {
     overflow-x: auto;
 }
@@ -93,7 +105,11 @@ tr:nth-child(even) {
     }
 
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.8rem; /* Ajusta o tamanho para telas menores */
+    }
+
+    p {
+        font-size: 1rem; /* Ajusta o tamanho da fonte dos parágrafos */
     }
 }
 
@@ -118,6 +134,10 @@ tr:nth-child(even) {
     }
 
     h1 {
-        font-size: 1.2rem;
+        font-size: 1.5rem; /* Ajusta para telas pequenas */
+    }
+
+    p {
+        font-size: 0.9rem; /* Ajusta para telas pequenas */
     }
 }
