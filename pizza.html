@@ -33,28 +33,68 @@
     <script>
         const ctx = document.getElementById('myChart');
 
-        const Utils = {
-            numbers: (cfg) => Array.from({ length: cfg.count }, () => Math.floor(Math.random() * (cfg.max - cfg.min + 1)) + cfg.min),
-            CHART_COLORS: {
-                // red: 'rgba(255, 99, 132, 0.8)',
-                // yellow: 'rgba(255, 205, 86, 0.6)',
-                green: 'rgba(0, 148, 64, 0.8)',
-                orange: 'rgba(255, 100, 0, 0.8)',
-                // blue: 'rgba(54, 162, 235, 0.6)',
-            }
-        };
-
-
-        const DATA_COUNT = 5;
-        const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
-
         const data = {
-            labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+            labels: ['Brasil', 'América Latina'],
             datasets: [
                 {
-                    label: 'Dataset 1',
+                    label: 'BRxLA',
                     data: [20,30],
-                    backgroundColor: Object.values(Utils.CHART_COLORS),
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
+                },
+                {
+                    label: 'BRxLA2',
+                    data: [40,50],
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
+                },
+                {
+                    label: 'BRxLA2',
+                    data: [40,50],
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
+                },
+                {
+                    label: 'BRxLA2',
+                    data: [40,50],
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
+                },
+                {
+                    label: 'BRxLA2',
+                    data: [40,50],
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
+                },
+                {
+                    label: 'BRxLA2',
+                    data: [40,50],
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
+                },
+                {
+                    label: 'BRxLA2',
+                    data: [40,50],
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
+                },
+                {
+                    label: 'BRxLA2',
+                    data: [40,50],
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
+                },
+                {
+                    label: 'BRxLA2',
+                    data: [40,50],
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
+                },
+                {
+                    label: 'BRxLA2',
+                    data: [40,50],
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
+                },
+                {
+                    label: 'BRxLA2',
+                    data: [40,50],
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
+                },
+                {
+                    label: 'BRxLA2',
+                    data: [40,50],
+                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
                 }
             ]
         };

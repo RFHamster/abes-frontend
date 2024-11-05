@@ -1,46 +1,45 @@
-// Dados mock (simulados)
 const mockData = [
-    { id: 1, nome: "João", email: "joao@example.com", telefone: "9999-9999", cidade: "São Paulo", estado: "SP" },
-    { id: 2, nome: "Maria", email: "maria@example.com", telefone: "9888-8888", cidade: "Rio de Janeiro", estado: "RJ" },
-    { id: 3, nome: "Carlos", email: "carlos@example.com", telefone: "9777-7777", cidade: "Belo Horizonte", estado: "MG" },
-    { id: 4, nome: "Ana", email: "ana@example.com", telefone: "9666-6666", cidade: "Porto Alegre", estado: "RS" },
-    { id: 5, nome: "Pedro", email: "pedro@example.com", telefone: "9555-5555", cidade: "Curitiba", estado: "PR" }
+    { brazil_position: 1, brazil_movement: "João", global_investment: "joao@example.com", latin_america_investment: "9999-9999", investment_sectors: "São Paulo", study_year: "SP" },
+    { brazil_position: 2, brazil_movement: "Maria", global_investment: "maria@example.com", latin_america_investment: "9888-8888", investment_sectors: "Rio de Janeiro", study_year: "RJ" },
+    { brazil_position: 3, brazil_movement: "Carlos", global_investment: "carlos@example.com", latin_america_investment: "9777-7777", investment_sectors: "Belo Horizonte", study_year: "MG" },
+    { brazil_position: 4, brazil_movement: "Ana", global_investment: "ana@example.com", latin_america_investment: "9666-6666", investment_sectors: "Porto Alegre", study_year: "RS" },
+    { brazil_position: 5, brazil_movement: "Pedro", global_investment: "pedro@example.com", latin_america_investment: "9555-5555", investment_sectors: "Curitiba", study_year: "PR" }
 ];
 
-// Função para preencher a tabela com dados mock
 function populateTable() {
     const tableBody = document.querySelector("#mockTable tbody");
 
     mockData.forEach(data => {
         const row = document.createElement("tr");
+        
+        const study_yearCell = document.createElement("td");
+        study_yearCell.textContent = data.study_year;
+        row.appendChild(study_yearCell);
 
-        const idCell = document.createElement("td");
-        idCell.textContent = data.id;
-        row.appendChild(idCell);
+        const brazil_positionCell = document.createElement("td");
+        brazil_positionCell.textContent = data.brazil_position;
+        row.appendChild(brazil_positionCell);
 
-        const nomeCell = document.createElement("td");
-        nomeCell.textContent = data.nome;
-        row.appendChild(nomeCell);
+        const brazil_movementCell = document.createElement("td");
+        brazil_movementCell.textContent = data.brazil_movement;
+        row.appendChild(brazil_movementCell);
 
-        const emailCell = document.createElement("td");
-        emailCell.textContent = data.email;
-        row.appendChild(emailCell);
+        const global_investmentCell = document.createElement("td");
+        global_investmentCell.textContent = data.global_investment;
+        row.appendChild(global_investmentCell);
 
-        const telefoneCell = document.createElement("td");
-        telefoneCell.textContent = data.telefone;
-        row.appendChild(telefoneCell);
+        const latin_america_investmentCell = document.createElement("td");
+        latin_america_investmentCell.textContent = data.latin_america_investment;
+        row.appendChild(latin_america_investmentCell);
 
-        const cidadeCell = document.createElement("td");
-        cidadeCell.textContent = data.cidade;
-        row.appendChild(cidadeCell);
+        const investment_sectorsCell = document.createElement("td");
+        investment_sectorsCell.textContent = data.investment_sectors;
+        row.appendChild(investment_sectorsCell);
 
-        const estadoCell = document.createElement("td");
-        estadoCell.textContent = data.estado;
-        row.appendChild(estadoCell);
+        
 
         tableBody.appendChild(row);
     });
 }
 
-// Chama a função para popular a tabela ao carregar a página
 window.onload = populateTable;
