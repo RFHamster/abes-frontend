@@ -22,7 +22,7 @@
     </nav>
 
     <div class="container">
-        <h1>Tabela de Dados</h1>
+        <h1>Brasil x América Latina</h1>
         <div>
             <canvas id="myChart" width="500" height="500"></canvas>
         </div>
@@ -31,91 +31,47 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        const ctx = document.getElementById('myChart');
+        const getData = async () => {
+            const response = await fetch("http://localhost:8000/abes/pizza/br_la");
 
-        const data = {
-            labels: ['Brasil', 'América Latina'],
-            datasets: [
-                {
-                    label: 'BRxLA',
-                    data: [20,30],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                },
-                {
-                    label: 'BRxLA2',
-                    data: [40,50],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                },
-                {
-                    label: 'BRxLA2',
-                    data: [40,50],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                },
-                {
-                    label: 'BRxLA2',
-                    data: [40,50],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                },
-                {
-                    label: 'BRxLA2',
-                    data: [40,50],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                },
-                {
-                    label: 'BRxLA2',
-                    data: [40,50],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                },
-                {
-                    label: 'BRxLA2',
-                    data: [40,50],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                },
-                {
-                    label: 'BRxLA2',
-                    data: [40,50],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                },
-                {
-                    label: 'BRxLA2',
-                    data: [40,50],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                },
-                {
-                    label: 'BRxLA2',
-                    data: [40,50],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                },
-                {
-                    label: 'BRxLA2',
-                    data: [40,50],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                },
-                {
-                    label: 'BRxLA2',
-                    data: [40,50],
-                    backgroundColor: ['rgba(0, 148, 64, 0.8)','rgba(255, 100, 0, 0.8)']
-                }
-            ]
-        };
-
-        new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Participação do Brasil nos investimentos da América Latina'
-                    }
-                }
+            if (!response.ok) {
+                throw new Error("Falha ao obter dados da API");
             }
-        });
+
+            return response.json();
+        }
+
+        async function createBars() {
+
+            const ctx = document.getElementById('myChart');
+            try {
+                const data = await getData();
+
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Participação do Brasil nos investimentos da América Latina'
+                            }
+                        }
+                    }
+                });
+
+
+            } catch (error) {
+                console.error("Erro ao carregar dados:", error);
+            }
+        }
+
+        window.onload = createBars;
     </script>
 </body>
 

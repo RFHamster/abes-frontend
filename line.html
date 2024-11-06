@@ -17,36 +17,51 @@
             <li><a href="table.html">Dados Abes</a></li>
             <li><a href="bars.html">Investimentos</a></li>
             <li><a href="line.html">Ranking do Brasil</a></li>
-            <li><a href="pizza.html">Contexto Brasileiro na AL</a></li> 
+            <li><a href="pizza.html">Contexto Brasileiro na AL</a></li>
         </ul>
     </nav>
-    
+
     <div class="container">
-        <h1>Tabela de Dados</h1>
+        <h1>Posição do Brasil ao Longo dos Anos</h1>
+        
         <div>
             <canvas id="myChart"></canvas>
+            <p>** quanto menor melhor</p>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        const ctx = document.getElementById('myChart');
-        const labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'];
 
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'My First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    fill: false,
-                    borderColor: 'rgba(0,0,139, 0.8)',
-                    tension: 0.1
-                }]
+        const getData = async () => {
+            const response = await fetch("http://localhost:8000/abes/line/br_position");
+
+            if (!response.ok) {
+                throw new Error("Falha ao obter dados da API");
             }
-        });
+
+            return response.json();
+        }
+
+        async function createBars() {
+
+            const ctx = document.getElementById('myChart');
+            try {
+                const data = await getData();
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: data
+                });
+
+
+            } catch (error) {
+                console.error("Erro ao carregar dados:", error);
+            }
+        }
+
+        window.onload = createBars;
     </script>
 </body>
 

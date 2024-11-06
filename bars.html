@@ -17,12 +17,13 @@
             <li><a href="table.html">Dados Abes</a></li>
             <li><a href="bars.html">Investimentos</a></li>
             <li><a href="line.html">Ranking do Brasil</a></li>
-            <li><a href="pizza.html">Contexto Brasileiro na AL</a></li> 
+            <li><a href="pizza.html">Contexto Brasileiro na AL</a></li>
         </ul>
     </nav>
 
     <div class="container">
-        <h1>Tabela de Dados</h1>
+        <h1>Quantidade de Investimento de TI</h1>
+        <h1>Brasil x Mundo</h1>
         <div>
             <canvas id="myChart"></canvas>
         </div>
@@ -31,46 +32,52 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        const ctx = document.getElementById('myChart');
 
-        const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
-        const data = {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Brasil',
-                    data: [10, 20, 30, 40, 50, 60, 70],
-                    backgroundColor: 'rgba(0, 148, 64, 0.8)',
-                },
-                {
-                    label: 'Mundo',
-                    data: [70, 60, 50, 40, 30, 20, 10],
-                    backgroundColor: 'rgba(0,0,139, 0.8)',
-                }
-            ]
-        };
+        const getData = async () => {
+            const response = await fetch("http://localhost:8000/abes/bars/br_world");
 
-        new Chart(ctx, {
-            type: 'bar',
-            data: data,
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Chart.js Bar Chart - Stacked'
-                    },
-                },
-                responsive: true,
-                scales: {
-                    x: {
-                        stacked: true,
-                    },
-                    y: {
-                        stacked: true
-                    }
-                }
+            if (!response.ok) {
+                throw new Error("Falha ao obter dados da API");
             }
-        });
+
+            return response.json();
+        }
+
+        async function createBars() {
+            
+            const ctx = document.getElementById('myChart');
+            try {
+                const data = await getData();
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Chart.js Bar Chart - Stacked'
+                            },
+                        },
+                        responsive: true,
+                        scales: {
+                            x: {
+                                stacked: true,
+                            },
+                            y: {
+                                stacked: true
+                            }
+                        }
+                    }
+                });
+
+
+            } catch (error) {
+                console.error("Erro ao carregar dados:", error);
+            }
+        }
+
+        window.onload = createBars;
     </script>
 </body>
 
